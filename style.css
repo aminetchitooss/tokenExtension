@@ -1,0 +1,94 @@
+body {
+    color: #4f669f;
+    /* color: white; */
+    /* background-color: #040304 !important; */
+}
+p {
+    margin: 0;
+}
+.modal {
+    display: inline-block;
+    padding: 1rem;
+    width: 380px;
+}
+.title {
+    font-size: 50px;
+    font-weight: 700;
+    font-family: "Dancing Script", cursive;
+    margin: 0;
+    text-align: center;
+    /* -webkit-animation: filter-animation 1s infinite;
+    animation: filter-animation 1s infinite; */
+}
+#input {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 6px;
+    width: 100%;
+    border: 1px solid gray;
+}
+#refresh {
+    color: #ea5284;
+    font-size: 23px;
+    text-align: center;
+    width: 100%;
+}
+#refresh,
+#input {
+    display: none;
+}
+#loading {
+    display: block;
+    text-align: center;
+    margin: 0;
+}
+#loading p {
+    color: #040304;
+    font-size: 20px;
+    margin-bottom: 4px;
+}
+body .modal .links i {
+    cursor: pointer;
+    font-size: 35px;
+    color: #4f669f;
+}
+.fa-copy {
+    position: absolute;
+    right: 10px;
+}
+.field {
+    margin: 2rem 0;
+}
+hr {
+    margin: 1rem 0;
+}
+.field,
+.links {
+    position: relative;
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+.links {
+    justify-content: center;
+}
+.links a:first-child i {
+    margin-right: 1rem;
+}
+
+@keyframes filter-animation {
+    0% {
+        filter: hue-rotate(0deg);
+        transform: scale(1);
+    }
+
+    50% {
+        filter: hue-rotate(400deg);
+        transform: scale(1.1);
+    }
+
+    100% {
+        filter: hue-rotate(0deg);
+        transform: scale(1);
+    }
+}
