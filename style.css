@@ -17,8 +17,6 @@ p {
     font-family: "Dancing Script", cursive;
     margin: 0;
     text-align: center;
-    /* -webkit-animation: filter-animation 1s infinite;
-    animation: filter-animation 1s infinite; */
 }
 #input {
     padding: 10px;
@@ -26,6 +24,26 @@ p {
     border-radius: 6px;
     width: 100%;
     border: 1px solid gray;
+}
+#tooltiptext {
+    visibility: hidden;
+    background-color: #66c6b4;
+    width: 90px;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 4.5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: -36px;
+    font-size: 1rem;
+    left: calc(50% - 45px);
+}
+
+#tooltiptext.show {
+    visibility: visible;
+    -webkit-animation: bounce .5s ease-in;
+    animation: bounce .5s ease-in;
 }
 #refresh {
     color: #ea5284;
@@ -57,7 +75,7 @@ body .modal .links i {
     right: 10px;
 }
 .field {
-    margin: 2rem 0;
+    margin: 2rem 0 3rem;
 }
 hr {
     margin: 1rem 0;
@@ -76,19 +94,16 @@ hr {
     margin-right: 1rem;
 }
 
-@keyframes filter-animation {
+@keyframes bounce {
     0% {
-        filter: hue-rotate(0deg);
         transform: scale(1);
     }
 
     50% {
-        filter: hue-rotate(400deg);
         transform: scale(1.1);
     }
 
     100% {
-        filter: hue-rotate(0deg);
         transform: scale(1);
     }
 }

@@ -1,39 +1,11 @@
 var inputText = document.getElementById("input");
 var loading = document.getElementById("loading");
 var refresh = document.getElementById("refresh");
-var repeatCount = 0
+var tooltiptext = document.getElementById("tooltiptext");
 inputText.value = ""
-function getToken() {
-
-    // chrome.storage.sync.get('token', function (data) {
-    //     if (data.isIncluded == false) {
-    //         showExcluded()
-    //     } else if (typeof data.token == "undefined" && repeatCount < 5) {
-    //         setTimeout(() => {
-    //             repeatCount++;
-    //             getToken()
-    //         }, 1000);
-    //     } else {
-    //         setToken(data.token)
-    //         repeatCount = 0
-    //     }
-    // });
-
-    chrome.storage.local.get("token", function (data) {
-        if (repeatCount >= 5) {
-            showRefresh()
-        } else if (typeof data.token == "undefined" && repeatCount <= 5) {
-            setTimeout(() => {
-                repeatCount++;
-                getToken()
-            }, 1000);
-        } else {
-            setToken(data.token)
-            repeatCount = 0
-        }
-    });
-
-
+const params = {
+    active: true,
+    currentWindow: true
 }
 
 function showRefresh() {
@@ -43,14 +15,15 @@ function showRefresh() {
     }, 1000);
 }
 
-function setToken(pToken) {
+function setInputValue(pToken) {
     if (typeof pToken !== "undefined")
         setTimeout(() => {
             loading.style.display = "none"
             inputText.style.display = "block"
             inputText.value = pToken
             copyToken()
-        }, 1000);
+            tooltiptext.classList.add('show')
+        }, 500);
 }
 
 function copyToken() {
@@ -59,6 +32,19 @@ function copyToken() {
     document.execCommand("copy");
 }
 
-getToken()
+function startup(tabs) {
+    let msg = {
+        txt: "Get my token please"
+    }
+    chrome.tabs.sendMessage(tabs[0].id, msg, (res) => {
+        if (res?.token)
+            setInputValue(res.token)
+        else
+            showRefresh()
+        console.log(res)
+    })
+}
 
-console.log('yep')
+chrome.tabs.query(params, startup)
+
+// console.log('poping up')
